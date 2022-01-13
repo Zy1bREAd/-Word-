@@ -1,6 +1,6 @@
 import zipfile
-import shutil
 import time
+import os
 
 def getPicture(doc_path,image_path):
     start_time = time.time()
@@ -16,6 +16,17 @@ def getPicture(doc_path,image_path):
     end_time = time.time()
     print(f"总共耗时：{end_time-start_time} 秒")
 
-doc_path = r'J:\09wwq\（人工智能学院）陈俞强12.30(1).docx'      
-image_path = r'J:\09wwq\target'
-getPicture(doc_path,image_path)
+def getDirName():
+    t1 = time.localtime(time.time())
+    dir_name = f"{t1.tm_year}-{t1.tm_mon}-{t1.tm_mday} {t1.tm_hour}_{t1.tm_min}"
+    print(dir_name)
+    return dir_name
+
+
+if __name__ == "__main__":
+    doc_path = r'J:\09wwq\（人工智能学院）陈俞强12.30(1).docx'      
+    dir_path = getDirName()
+    image_path = r'J:\09wwq\target'+'\\'+dir_path
+    os.mkdir(image_path)
+    getPicture(doc_path,image_path)
+    
